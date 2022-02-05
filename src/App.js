@@ -13,17 +13,19 @@ const App = () => {
     const user = await data.json()
     setItems(user.results)
   }
-  console.log(items);
+  console.log(items.results);
   
   const people = items.map(item => (
     <Square key={item.id}>
       <Title>
         {item.name}
       </Title>
-
+      
+      <Image src={item.image} alt="personajes" />
+      
       <FlexInfo>
         <FigureStatus style={{background: item.status === "Alive" ? "#00FF00" :
-            item.status === "Dead" ?"#FF0000" :
+            item.status === "Dead" ? "#FF0000" :
               "#808080"}} />
         <InfoCharacter>
           {item.species} - {item.gender}
@@ -38,7 +40,6 @@ const App = () => {
           {item.location.name}
         </DataLocation>
       </div>
-      <p>{item.episode.name}</p>
     </Square>
   ))
 
@@ -63,6 +64,11 @@ const Square = styled.div`
 
 const Title = styled.h1`
   color: #D6DBFF;
+`
+
+const Image = styled.img`
+  width: 200px;
+  border-radius: 10px;
 `
 
 const FlexInfo = styled.div`
